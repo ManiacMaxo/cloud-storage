@@ -1,0 +1,71 @@
+@import '../scss/const';
+
+.list {
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    max-width: 90vw;
+    border: 2px solid $dark-color;
+    border-radius: 5px;
+    padding-top: 1rem;
+
+    h1 {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0 auto;
+        padding: 10px;
+    }
+
+    li {
+        &:nth-child(even) {
+            background-color: $primary-color;
+        }
+
+        &:nth-child(odd) {
+            background-color: $secondary-color;
+        }
+
+        display: grid;
+        grid-template-columns: 3fr 1.5fr 1fr;
+        padding: 5px 10px;
+
+        a {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        span {
+            justify-self: flex-end;
+        }
+
+        .count {
+            grid-column: 3;
+        }
+    }
+
+    svg {
+        margin-right: 5px;
+    }
+}
+
+@media (max-width: 700px) {
+    .list ul li {
+        grid-template-columns: 2fr 1fr;
+
+        .date {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .list ul li {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        padding: 10px 5px;
+        * {
+            justify-self: center;
+        }
+    }
+}
