@@ -1,8 +1,9 @@
 require('dotenv').config()
 
+import { lookup } from 'mime'
 import { Request, Response } from 'express'
-import { existsSync, lstatSync, readdir } from 'fs'
-import { resolve } from 'path'
+import { createReadStream, existsSync, lstatSync, readdir } from 'fs'
+import { resolve, basename } from 'path'
 import { File } from '../models'
 
 export const listDir = (req: Request, res: Response, next: Function) => {
@@ -34,6 +35,14 @@ export const listDir = (req: Request, res: Response, next: Function) => {
 
 export const downloadFile = (req: Request, res: Response, next: Function) => {
     const path = resolve(process.env.DIR + req.path)
+
+    console.log(path)
     const file = new File(path)
-    return res.download(path, file.name)
+
+    var mimetype = lookup(path)
+
+    res.setHeader('Content-disposition', `attachment; filename=${file.name}`)
+    res.setHeader('Content-type', mimetype)
+
+    return createReadStream(path).pipe(res)
 }

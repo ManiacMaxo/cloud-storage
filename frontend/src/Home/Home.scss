@@ -29,6 +29,7 @@
         display: grid;
         grid-template-columns: 3fr 1.5fr 1fr;
         padding: 5px 10px;
+        align-items: center;
 
         a {
             overflow: hidden;

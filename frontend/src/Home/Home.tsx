@@ -1,29 +1,31 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { FaFolder, FaRegFileAlt } from 'react-icons/fa'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import { IoReturnDownBack } from 'react-icons/io5'
+import { Link, useLocation } from 'react-router-dom'
+import { File, Folder } from '.'
 import './Home.scss'
 
 interface Props {}
 
-const Home: React.FC<Props> = () => {
+const Home: FunctionComponent<Props> = () => {
     const location = useLocation()
-    const host = 'http://localhost:8080' + location.pathname
+    const host = process.env.REACT_APP_HOST + location.pathname
 
     const [loading, setLoading] = useState(true)
     const [files, setFiles] = useState(Array)
 
     useEffect(() => {
-        setFiles([])
         setLoading(true)
         fetch(host)
             .then((res) => {
-                if (res.ok) {
-                    return res.json()
+                if (!res.ok) {
+                    throw new Error('500')
                 }
+                return res.json()
             })
             .then((data) => {
-                setFiles(renderFiles(data))
+                setFiles(data)
+            })
+            .finally(() => {
                 setLoading(false)
             })
     }, [host])
@@ -38,41 +40,26 @@ const Home: React.FC<Props> = () => {
                     </Link>
                     <span className='count'>{files.length} files</span>
                 </li>
-                {loading ? <li>Loading...</li> : files}
+                {loading ? (
+                    <li>Loading...</li>
+                ) : (
+                    files.map((file: any) => {
+                        return (
+                            <li key={file.name}>
+                                {file.dir ? (
+                                    <Folder file={file.name} />
+                                ) : (
+                                    <File file={file.name} host={host} />
+                                )}
+                                <span className='date'>{file.time}</span>
+                                <span className='size'>{file.size} KB</span>
+                            </li>
+                        )
+                    })
+                )}
             </ul>
         </div>
     )
-}
-
-const renderFiles = (data: []) => {
-    if (data === undefined) {
-        return []
-    }
-    const render: JSX.Element[] = []
-
-    data.forEach((file: any) => {
-        const icon = file.dir ? <FaFolder /> : <FaRegFileAlt />
-
-        const name = file.name.substring(0, 30)
-        const dots = name.length !== file.name.length ? '...' : ''
-
-        render.push(
-            <li key={file.name}>
-                <Link
-                    key={file.name}
-                    to={file.name + '/'}
-                    className={file.dir ? 'dir' : 'file'}
-                >
-                    {icon}
-                    {name + dots}
-                </Link>
-                <span className='date'>{file.time}</span>
-                <span className='size'>{file.size} KB</span>
-            </li>
-        )
-    })
-
-    return render
 }
 
 export default Home
