@@ -3,11 +3,21 @@ require('dotenv').config()
 import { lookup } from 'mime'
 import { Request, Response } from 'express'
 import { createReadStream, existsSync, lstatSync, readdir } from 'fs'
-import { resolve, basename } from 'path'
+import { resolve } from 'path'
 import { File } from '../models'
 
+const resolvePath = (path: string): string => {
+    if (path.startsWith('/' + process.env.PROTECTED)) {
+        return resolve(
+            process.env.PROTECTED_DIR +
+                path.substring(process.env.PROTECTED.length + 1)
+        )
+    }
+    return resolve(process.env.DIR + path)
+}
+
 export const listDir = (req: Request, res: Response, next: Function) => {
-    const path = resolve(process.env.DIR + req.path)
+    const path = resolvePath(req.path)
 
     if (!existsSync(path)) {
         console.log(`error: Could not find "${path}"`)
@@ -34,12 +44,11 @@ export const listDir = (req: Request, res: Response, next: Function) => {
 }
 
 export const downloadFile = (req: Request, res: Response, next: Function) => {
-    const path = resolve(process.env.DIR + req.path)
+    const path = resolvePath(req.path)
 
-    console.log(path)
+    console.log(`Downloading: ${path}`)
     const file = new File(path)
-
-    var mimetype = lookup(path)
+    const mimetype = lookup(path)
 
     res.setHeader('Content-disposition', `attachment; filename=${file.name}`)
     res.setHeader('Content-type', mimetype)

@@ -1,10 +1,10 @@
 import { lstatSync } from 'fs'
 
 export class File {
-    public name
-    public dir
-    public size
-    public time
+    name: string
+    dir: boolean
+    size: number
+    time: string
 
     constructor(path: string) {
         const stats = lstatSync(path)
