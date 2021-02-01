@@ -1,8 +1,11 @@
 {
-    "name": "frontend",
-    "version": "0.1.0",
+    "name": "cloud-storage-frontend",
+    "version": "0.0.1",
+    "author": "Victor Gorchilov <victor@gorchilov.com>",
+    "license": "MIT",
     "private": true,
     "dependencies": {
+        "axios": "^0.21.1",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-icons": "^4.1.0",
