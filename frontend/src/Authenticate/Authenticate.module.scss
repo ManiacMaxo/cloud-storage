@@ -1,0 +1,40 @@
+@import '../scss/const';
+
+.root {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    background-color: $light-color;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border-radius: 5px;
+
+    h1 {
+        width: 100%;
+        text-align: center;
+        padding: 1rem 0;
+        font-size: 1.5rem;
+    }
+}
+
+.button {
+    color: #000000;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #ffffff;
+    padding: 1rem;
+    border: 1px solid $dark-color;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: #ffffff;
+        background: $secondary-color;
+        border-color: $secondary-color;
+    }
+}

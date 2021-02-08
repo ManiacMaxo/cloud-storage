@@ -1,7 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { IoReturnDownBack } from 'react-icons/io5'
+import axios from 'axios'
 import { Link, useLocation } from 'react-router-dom'
-import { File, Folder } from '.'
+import { File, Folder } from '../components'
 import './Home.scss'
 
 interface Props {}
@@ -11,19 +12,21 @@ const Home: FunctionComponent<Props> = () => {
     const host = process.env.REACT_APP_HOST + location.pathname
 
     const [loading, setLoading] = useState(true)
-    const [files, setFiles] = useState(Array)
+    const [files, setFiles] = useState([])
 
     useEffect(() => {
         setLoading(true)
-        fetch(host)
+        axios
+            .get(host)
             .then((res) => {
-                if (!res.ok) {
-                    throw new Error('500')
-                }
-                return res.json()
+                setFiles(res.data)
             })
-            .then((data) => {
-                setFiles(data)
+            .catch((error) => {
+                console.log(error.response)
+                if (error.response.status === 401) {
+                    console.log('401')
+                    return window.location.assign('/login')
+                }
             })
             .finally(() => {
                 setLoading(false)
@@ -43,19 +46,17 @@ const Home: FunctionComponent<Props> = () => {
                 {loading ? (
                     <li>Loading...</li>
                 ) : (
-                    files.map((file: any) => {
-                        return (
-                            <li key={file.name}>
-                                {file.dir ? (
-                                    <Folder file={file.name} />
-                                ) : (
-                                    <File file={file.name} host={host} />
-                                )}
-                                <span className='date'>{file.time}</span>
-                                <span className='size'>{file.size} KB</span>
-                            </li>
-                        )
-                    })
+                    files.map((file: any) => (
+                        <li key={file.name}>
+                            {file.dir ? (
+                                <Folder file={file.name} />
+                            ) : (
+                                <File file={file.name} host={host} />
+                            )}
+                            <span className='date'>{file.time}</span>
+                            <span className='size'>{file.size} KB</span>
+                        </li>
+                    ))
                 )}
             </ul>
         </div>

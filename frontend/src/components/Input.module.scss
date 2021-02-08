@@ -1,0 +1,41 @@
+@import '../scss/const';
+$input-height: 3rem;
+
+.group {
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    margin: 0 0 0.5rem;
+}
+
+input {
+    border-radius: 3px;
+    width: 100%;
+    height: $input-height;
+    background-color: #fafafa;
+    border: 1px solid $dark-color;
+    padding: 0 1rem;
+    outline: none;
+    transition: all 0.3s;
+    &::placeholder {
+        color: $dark-color;
+        font-weight: 300;
+        text-transform: capitalize;
+    }
+}
+
+label {
+    margin-left: 1rem;
+    margin-top: 0.2rem;
+    display: block;
+    transition: all 0.3s;
+    text-transform: capitalize;
+}
+
+input:placeholder-shown + label {
+    opacity: 0;
+    visibility: hidden;
+    $translate-height: -$input-height * 0.5;
+    transform: translateY($translate-height);
+    -webkit-transform: translateY($translate-height);
+}

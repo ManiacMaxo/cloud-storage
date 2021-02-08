@@ -10,11 +10,13 @@
     font-weight: inherit;
 }
 
-body {
+body,
+.root {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: 'Sen', sans-serif;
     color: #253d52;
+    min-height: 100vh;
 }
 
 ul {
