@@ -8,8 +8,8 @@ import './Home.scss'
 interface Props {}
 
 const Home: FunctionComponent<Props> = () => {
-    const location = useLocation()
-    const host = process.env.REACT_APP_HOST + location.pathname
+    const { pathname } = useLocation()
+    const host = process.env.REACT_APP_BACKEND + pathname
 
     const [loading, setLoading] = useState(true)
     const [files, setFiles] = useState([])
@@ -35,7 +35,7 @@ const Home: FunctionComponent<Props> = () => {
 
     return (
         <div className='list'>
-            <h1>{location.pathname}</h1>
+            <h1>{pathname}</h1>
             <ul>
                 <li>
                     <Link to='../'>
