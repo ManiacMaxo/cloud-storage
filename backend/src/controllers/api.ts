@@ -1,26 +1,15 @@
-require('dotenv').config()
-
-import { lookup } from 'mime'
 import { Request, Response } from 'express'
 import { createReadStream, existsSync, lstatSync, readdir } from 'fs'
+import { lookup } from 'mime'
 import { resolve } from 'path'
 import { File } from '../models'
-
-const resolvePath = (path: string): string => {
-    if (path.startsWith('/' + process.env.PROTECTED)) {
-        return resolve(
-            process.env.PROTECTED_DIR +
-                path.substring(process.env.PROTECTED.length + 1)
-        )
-    }
-    return resolve(process.env.DIR + path)
-}
+import { resolvePath } from '../utils'
 
 export const listDir = (req: Request, res: Response, next: Function) => {
     const path = resolvePath(req.path)
 
     if (!existsSync(path)) {
-        console.log(`error: Could not find "${path}"`)
+        console.error(`error: Could not find "${path}"`)
         return res.sendStatus(404)
     }
 
@@ -38,8 +27,7 @@ export const listDir = (req: Request, res: Response, next: Function) => {
             files.push(new File(resolve(path, file)))
         })
 
-        res.status(200)
-        return res.send(files)
+        return res.status(200).send(files)
     })
 }
 
@@ -50,7 +38,10 @@ export const downloadFile = (req: Request, res: Response, next: Function) => {
     const file = new File(path)
     const mimetype = lookup(path)
 
-    res.setHeader('Content-disposition', `attachment; filename=${file.name}`)
+    res.setHeader(
+        'Content-disposition',
+        `attachment; filename*=UTF-8\'\'${file.utf_name}`
+    )
     res.setHeader('Content-type', mimetype)
 
     return createReadStream(path).pipe(res)
