@@ -21,8 +21,8 @@ app.use(express.static(__dirname + '/../public'))
 import * as routes from './routes'
 
 const corsOptions = {
-    origin: [/gorchilov\.net$/, 'localhost'],
-    methods: ['GET', 'HEAD', 'POST']
+    origin: [/gorchilov\.net$/, /(localhost)./],
+    methods: ['GET', 'HEAD', 'POST', 'OPTIONS']
 }
 
 app.use(cors(corsOptions))
