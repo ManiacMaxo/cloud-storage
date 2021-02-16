@@ -9,4 +9,6 @@ export const authorize = (req: Request, res: Response, next: Function) => {
     next()
 }
 
+export const login = (req: Request, res: Response, next: Function) => {}
+
 export const createToken = (req: Request, res: Response, next: Function) => {}

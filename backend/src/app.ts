@@ -8,8 +8,8 @@ const app = express()
 app.use(
     logger('common', {
         stream: createWriteStream('./access.log', {
-            flags: 'a',
-        }),
+            flags: 'a'
+        })
     })
 )
 
@@ -20,7 +20,12 @@ app.use(express.static(__dirname + '/../public'))
 // routes
 import * as routes from './routes'
 
-app.use(cors())
+const corsOptions = {
+    origin: [/gorchilov\.net$/, 'localhost'],
+    methods: ['GET', 'HEAD', 'POST']
+}
+
+app.use(cors(corsOptions))
 
 app.use(routes.api)
 

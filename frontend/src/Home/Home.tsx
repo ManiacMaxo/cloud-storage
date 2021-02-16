@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { IoReturnDownBack } from 'react-icons/io5'
-import axios from 'axios'
 import { Link, useLocation } from 'react-router-dom'
 import { File, Folder } from '../components'
 import './Home.scss'
@@ -16,17 +15,16 @@ const Home: FunctionComponent<Props> = () => {
 
     useEffect(() => {
         setLoading(true)
-        axios
-            .get(host)
+        fetch(host)
             .then((res) => {
-                setFiles(res.data)
-            })
-            .catch((error) => {
-                console.log(error.response)
-                if (error.response.status === 401) {
-                    console.log('401')
+                if (res.ok) {
+                    return res.json()
+                } else if (res.status === 401) {
                     return window.location.assign('/login')
                 }
+            })
+            .then((data) => {
+                setFiles(data)
             })
             .finally(() => {
                 setLoading(false)
