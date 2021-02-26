@@ -6,7 +6,7 @@ export const authorize = (req: Request, res: Response, next: Function) => {
         return res.sendStatus(401)
     }
     console.log(req.headers)
-    next()
+    return next()
 }
 
 export const login = (req: Request, res: Response, next: Function) => {}

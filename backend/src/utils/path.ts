@@ -3,11 +3,13 @@ require('dotenv').config()
 import { resolve } from 'path'
 
 export const resolvePath = (path: string): string => {
-    if (path.startsWith(`/${process.env.PROTECTED}`)) {
+    const authenticatedPath = 'protected'
+
+    if (path.startsWith(`/${authenticatedPath}`)) {
         return decodeURIComponent(
             resolve(
-                process.env.PROTECTED_DIR +
-                    path.substring(process.env.PROTECTED.length + 1)
+                process.env.AUTHENTICATED_DIR +
+                    path.substring(authenticatedPath.length + 1)
             )
         )
     }

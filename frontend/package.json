@@ -1,9 +1,20 @@
 {
-    "name": "cloud-storage-frontend",
-    "version": "0.0.1",
     "author": "Victor Gorchilov <victor@gorchilov.com>",
     "license": "MIT",
-    "private": true,
+    "name": "cloud-storage-frontend",
+    "version": "0.0.1",
+    "browserslist": {
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ],
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ]
+    },
     "dependencies": {
         "axios": "^0.21.1",
         "react": "^17.0.1",
@@ -15,33 +26,22 @@
         "typescript": "^4.0.3",
         "web-vitals": "^0.2.4"
     },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "serve": "pm2 start",
-        "build-and-serve": "yarn build && yarn serve"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
     "devDependencies": {
         "@types/node": "^12.0.0",
         "@types/react": "^16.9.53",
         "@types/react-dom": "^16.9.8",
         "@types/react-router-dom": "^5.1.7"
-    }
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "scripts": {
+        "build": "react-scripts build",
+        "build-and-serve": "yarn build && yarn serve",
+        "eject": "react-scripts eject",
+        "serve": "pm2 start",
+        "start": "react-scripts start",
+        "test": "react-scripts test"
+    },
+    "private": true
 }

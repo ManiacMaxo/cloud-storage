@@ -22,7 +22,7 @@ export const listDir = (req: Request, res: Response, next: Function) => {
             return res.sendStatus(500)
         }
 
-        const files = []
+        const files: File[] = []
         dir.forEach((file) => {
             files.push(new File(resolve(path, file)))
         })
