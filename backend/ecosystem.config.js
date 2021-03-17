@@ -1,10 +1,8 @@
 module.exports = {
     name: 'cloud storage backend',
-    script: 'src/index.ts',
-    exp_backoff_restart_delay: 100,
-    error_file: 'err.log',
-    log_file: 'access.log',
-    time: true,
+    script: 'yarn',
+    args: 'build-and-serve',
+    watch: true,
     env: {
         NODE_ENV: 'production'
     }
