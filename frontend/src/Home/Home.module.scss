@@ -1,0 +1,85 @@
+@import '../scss/const';
+
+.root {
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    max-width: 90vw;
+    border: 2px solid $light-color;
+    border-radius: 5px;
+    padding-top: 1rem;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 2px solid $light-color;
+}
+
+li {
+    display: grid;
+    grid-template-columns: 55% 25% 20%;
+    padding: 5px 10px;
+    align-items: center;
+
+    a {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+    }
+
+    span {
+        justify-self: flex-end;
+    }
+
+    .count {
+        grid-column: 3;
+    }
+
+    &:hover {
+        background-color: $hover-color;
+    }
+}
+
+svg {
+    margin-right: 7px;
+    color: $secondary-color;
+}
+
+@media (max-width: 700px) {
+    .root ul li {
+        grid-template-columns: 66.5% 33.5%;
+
+        .count {
+            grid-column: 2;
+        }
+
+        .date {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .root ul li {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        padding: 10px 5px;
+        * {
+            justify-self: center;
+        }
+        a {
+            height: 1.5rem;
+        }
+        .count {
+            grid-column: 1;
+        }
+    }
+}

@@ -1,12 +1,12 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoReturnDownBack } from 'react-icons/io5'
 import { Link, useLocation } from 'react-router-dom'
 import { File, Folder } from '../components'
-import './Home.scss'
+import styles from './Home.module.scss'
 
 interface Props {}
 
-const Home: FunctionComponent<Props> = () => {
+const Home: React.FC<Props> = () => {
     const { pathname } = useLocation()
     const host = process.env.REACT_APP_BACKEND + pathname
 
@@ -32,14 +32,16 @@ const Home: FunctionComponent<Props> = () => {
     }, [host])
 
     return (
-        <div className='list'>
+        <div className={styles.root}>
             <h1>{pathname}</h1>
             <ul>
                 <li>
                     <Link to='../'>
                         <IoReturnDownBack />
                     </Link>
-                    <span className='count'>{files.length} files</span>
+                    <span className={styles.count}>
+                        {files.length + ' files'}
+                    </span>
                 </li>
                 {loading ? (
                     <li>Loading...</li>
@@ -51,8 +53,10 @@ const Home: FunctionComponent<Props> = () => {
                             ) : (
                                 <File file={file.name} host={host} />
                             )}
-                            <span className='date'>{file.time}</span>
-                            <span className='size'>{file.size} KB</span>
+                            <span className={styles.date}>{file.time}</span>
+                            <span className={styles.size}>
+                                {file.size + ' KB'}
+                            </span>
                         </li>
                     ))
                 )}

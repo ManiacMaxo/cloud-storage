@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import styles from './Input.module.scss'
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
     options?: any
 }
 
-const Input: FunctionComponent<Props> = (props) => {
+const Input: React.FC<Props> = (props) => {
     const name = props.placeholder ? props.placeholder : props.name
     return (
         <div className={styles.group} key={props.name}>

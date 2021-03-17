@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { FaRegFileAlt } from 'react-icons/fa'
 
 interface Props {
@@ -6,15 +6,13 @@ interface Props {
     host: string
 }
 
-const File: FunctionComponent<Props> = (props) => {
+const File: React.FC<Props> = (props) => {
     const file = props.file
-    const name = file.substring(0, 30)
-    const dots = name.length !== file.length ? '...' : ''
 
     return (
         <a href={props.host + file} className='file'>
             <FaRegFileAlt />
-            {name + dots}
+            {file}
         </a>
     )
 }

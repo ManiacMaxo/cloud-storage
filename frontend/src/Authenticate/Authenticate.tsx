@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { Input } from '../components'
 import styles from './Authenticate.module.scss'
 
 interface Props {}
 
-const Authenticate: FunctionComponent<Props> = (props) => {
+const Authenticate: React.FC<Props> = (props) => {
     const login = () => {}
 
     return (
