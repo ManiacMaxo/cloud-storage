@@ -1,32 +1,33 @@
-import { existsSync, readdir } from 'fs'
+import { existsSync, readdir, readdirSync } from 'fs'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { resolve } from 'path'
 import { File } from '../../lib'
 
 const listDir = (req: NextApiRequest, res: NextApiResponse): any => {
     if (!process.env.DIR) {
-        return res.status(501).send('Base directory not specified')
+        return res.status(500).send('Base directory not specified')
     }
 
-    const path = decodeURIComponent(process.env.DIR)
+    const path = process.env.DIR
 
     if (!existsSync(path)) {
         console.error(`error: Could not find "${path}"`)
-        return res.status(404).send('')
+        return res.status(404).end()
     }
 
-    readdir(path, (err, dir) => {
-        if (err) {
-            return res.status(500).send('')
-        }
-
+    try {
+        const dir = readdirSync(path)
         const files: File[] = []
+        const folders: File[] = []
         dir.forEach((file) => {
-            files.push(new File(resolve(path, file)))
+            const newFile = new File(resolve(path, file))
+            newFile.dir ? folders.push(newFile) : files.push(newFile)
         })
 
-        return res.status(200).json(files)
-    })
+        return res.status(200).json([...folders, ...files])
+    } catch (e) {
+        return res.status(500).end()
+    }
 }
 
 export default listDir

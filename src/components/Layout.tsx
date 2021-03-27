@@ -5,8 +5,8 @@ import Header from './Header'
 const Layout = (props: any): JSX.Element => {
     return (
         <>
-            <Header height='7vh' />
-            <Flex minHeight='93vh' justifyContent='center'>
+            <Header height='10vh' />
+            <Flex minHeight='90vh' justifyContent='center'>
                 {props.children}
             </Flex>
         </>

@@ -14,7 +14,7 @@ const listDir = (req: NextApiRequest, res: NextApiResponse): any => {
             process.env.DIR,
             typeof req.query.path === 'string'
                 ? req.query.path
-                : req.query.path.join('/')
+                : req.query.path?.join('/')
         )
     )
 
