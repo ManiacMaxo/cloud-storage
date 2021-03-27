@@ -1,0 +1,40 @@
+{
+  "name": "cloud-storage",
+  "author": "Victor Gorchilov <victor@gorchilov.com>",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.0.5",
+    "@chakra-ui/react": "^1.3.3",
+    "@chakra-ui/system": "^1.5.1",
+    "@chakra-ui/theme-tools": "1.1.1",
+    "@emotion/react": "11.1.5",
+    "@emotion/styled": "11.1.5",
+    "filesize": "^6.1.0",
+    "framer-motion": "^4.0.3",
+    "mime": "^2.5.2",
+    "moment": "^2.29.1",
+    "next": "latest",
+    "next-auth": "^3.13.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-icons": "^4.2.0",
+    "react-moment": "^1.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.13",
+    "@types/mime": "^2.0.3",
+    "@types/next-auth": "^3.7.3",
+    "@types/node": "^14.14.37",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
+    "prettier": "^2.2.1",
+    "typescript": "4.2.3"
+  }
+}

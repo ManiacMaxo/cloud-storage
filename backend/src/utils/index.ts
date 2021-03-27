@@ -1,1 +1,0 @@
-export { resolvePath } from './path'
