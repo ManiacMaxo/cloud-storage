@@ -1,13 +1,15 @@
+import { Flex } from '@chakra-ui/react'
 import React from 'react'
-import { Container } from './Container'
 import Header from './Header'
 
 const Layout = (props: any): JSX.Element => {
     return (
-        <Container height='100vh'>
-            <Header />
-            {props.children}
-        </Container>
+        <>
+            <Header height='7vh' />
+            <Flex minHeight='93vh' justifyContent='center'>
+                {props.children}
+            </Flex>
+        </>
     )
 }
 

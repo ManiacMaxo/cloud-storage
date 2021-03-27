@@ -8,7 +8,8 @@ const theme = extendTheme({
         rosePineBg: '#1f1d2e',
         rosePineText: '#e0def4',
         githubBg: '#ffffff',
-        githubText: '#24292e'
+        githubText: '#24292e',
+        githubLink: '#58a6ff'
     },
     styles: {
         global: (props) => ({

@@ -42,11 +42,13 @@ const listDir = (req: NextApiRequest, res: NextApiResponse): any => {
     try {
         const dir = readdirSync(path)
         const files: File[] = []
+        const folders: File[] = []
         dir.forEach((file) => {
-            files.push(new File(resolve(path, file)))
+            const newFile = new File(resolve(path, file))
+            newFile.dir ? folders.push(newFile) : files.push(newFile)
         })
 
-        return res.status(200).json(files)
+        return res.status(200).json([...folders, ...files])
     } catch (e) {
         return res.status(500).end()
     }

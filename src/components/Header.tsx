@@ -3,10 +3,10 @@ import { signIn, useSession } from 'next-auth/client'
 import React from 'react'
 import { DarkModeSwitch } from './DarkModeSwitch'
 
-const Header = () => {
+const Header = ({ height }: { height: string }) => {
     const [session] = useSession()
     return (
-        <Box width='100vw' py='1rem'>
+        <Box width='100vw' py='1rem' height={height}>
             <Flex
                 justifyContent='space-between'
                 alignItems='center'
@@ -14,6 +14,7 @@ const Header = () => {
                 width='850px'
                 margin='0 auto'
                 px='1rem'
+                height='100%'
             >
                 <DarkModeSwitch />
 
