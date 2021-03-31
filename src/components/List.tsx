@@ -68,6 +68,7 @@ const List = (props: Props): JSX.Element => {
                     >
                         <Link
                             href={
+                                (file.dir ? '' : '/api') +
                                 router.asPath +
                                 (router.asPath === '/' ? '' : '/') +
                                 file.utf_name

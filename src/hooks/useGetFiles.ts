@@ -11,6 +11,7 @@ const useGetFiles = (router: NextRouter) => {
             if (res.ok) {
                 return setFiles(await res.json())
             }
+            setFiles([])
         })()
     }, [router.query])
 
