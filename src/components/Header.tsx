@@ -1,5 +1,17 @@
-import { Avatar, Box, Button, Flex, Text } from '@chakra-ui/react'
-import { signIn, useSession } from 'next-auth/client'
+import {
+    Avatar,
+    Box,
+    Button,
+    Flex,
+    Menu,
+    MenuButton,
+    MenuDivider,
+    MenuItem,
+    MenuList,
+    Text
+} from '@chakra-ui/react'
+import { signIn, signOut, useSession } from 'next-auth/client'
+import Link from 'next/link'
 import React from 'react'
 import { DarkModeSwitch } from './DarkModeSwitch'
 
@@ -18,37 +30,44 @@ const Header = ({ height }: { height: string }) => {
             >
                 <DarkModeSwitch />
 
-                <Flex alignItems='center'>
-                    {session ? (
-                        <>
-                            <span>
+                {session ? (
+                    <Menu>
+                        <MenuButton
+                            as={Avatar}
+                            name={session.user.name ?? ''}
+                            src={session.user.image ?? ''}
+                            // rightIcon={<ChevronDownIcon />}
+                            _focus={{ outline: 'none' }}
+                        />
+                        <MenuList>
+                            <Text px='0.8rem'>
                                 <small>Signed in as</small>
                                 <br />
                                 <strong>
                                     {session.user.name ?? session.user.email}
                                 </strong>
-                            </span>
-                            <Avatar
-                                name={session.user.name ?? ''}
-                                src={session.user.image ?? ''}
-                            />
-                        </>
-                    ) : (
-                        <>
-                            <Text mx='0.2rem' display='inline-block'>
-                                You are not signed in
                             </Text>
-                            <Button
-                                onClick={() => signIn()}
-                                colorScheme='blue'
-                                size='sm'
-                                variant='outline'
-                            >
-                                Sign in
-                            </Button>
-                        </>
-                    )}
-                </Flex>
+                            <MenuDivider />
+                            <MenuItem>
+                                <Link href='/protected'>
+                                    <a>protected</a>
+                                </Link>
+                            </MenuItem>
+                            <MenuItem onClick={() => signOut()}>
+                                Sign out
+                            </MenuItem>
+                        </MenuList>
+                    </Menu>
+                ) : (
+                    <Button
+                        onClick={() => signIn()}
+                        colorScheme='blue'
+                        size='sm'
+                        variant='outline'
+                    >
+                        Sign in
+                    </Button>
+                )}
             </Flex>
         </Box>
     )

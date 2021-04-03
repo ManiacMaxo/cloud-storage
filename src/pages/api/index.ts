@@ -1,9 +1,9 @@
-import { existsSync, readdir, readdirSync } from 'fs'
+import { existsSync, readdirSync } from 'fs'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { resolve } from 'path'
 import { File } from '../../lib'
 
-const listDir = (req: NextApiRequest, res: NextApiResponse): any => {
+const listDir = (_req: NextApiRequest, res: NextApiResponse): any => {
     if (!process.env.DIR) {
         return res.status(500).send('Base directory not specified')
     }

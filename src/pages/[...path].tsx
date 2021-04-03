@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Layout from '../components/Layout'
@@ -11,14 +10,6 @@ const path = (): JSX.Element => {
 
     return (
         <Layout>
-            <Head>
-                <title>
-                    Index of{' '}
-                    {typeof router.query.path === 'string'
-                        ? router.query.path
-                        : router.query.path && router.query.path.join('/')}
-                </title>
-            </Head>
             <List files={files} />
         </Layout>
     )

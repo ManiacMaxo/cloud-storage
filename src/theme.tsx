@@ -16,6 +16,10 @@ const theme = extendTheme({
             body: {
                 color: mode('githubText', 'rosePineText')(props),
                 bg: mode('githubBg', 'rosePineBg')(props)
+            },
+            Menu: {
+                color: mode('githubText', 'rosePineText')(props),
+                bg: mode('githubBg', 'rosePineBg')(props)
             }
         })
     },
