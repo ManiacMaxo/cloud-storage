@@ -6,11 +6,11 @@ import useGetFiles from '../hooks/useGetFiles'
 
 const path = (): JSX.Element => {
     const router = useRouter()
-    const files = useGetFiles(router)
+    const { files, loading } = useGetFiles(router)
 
     return (
         <Layout>
-            <List files={files} />
+            <List files={files} loading={loading} />
         </Layout>
     )
 }

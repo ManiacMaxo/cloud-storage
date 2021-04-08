@@ -2,37 +2,41 @@ import {
     Center,
     Divider,
     Flex,
-    Grid,
     Heading,
-    Icon,
     Link as ChakraLink,
-    Text,
+    Spinner,
     useColorModeValue
 } from '@chakra-ui/react'
-import filesize from 'filesize'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { FaFolder, FaRegFile } from 'react-icons/fa'
-import Moment from 'react-moment'
 import Breadcrumbs from '../components/Breadcrumbs'
-import { File } from '../lib/File'
+import { File as TypeFile } from '../lib/File'
+import File from './File'
+import Folder from './Folder'
 
 interface Props {
-    files: File[]
+    files: TypeFile[]
+    loading: boolean
 }
 
-const List = (props: Props): JSX.Element => {
+const List: React.FC<Props> = (props): JSX.Element => {
     const router = useRouter()
-    const bg = useColorModeValue('#fffbdd', '#6e6a86')
-    const divider = <Divider orientation='horizontal' color='gray.600' />
+    const bg = useColorModeValue('githubHover', 'rosePineHover')
+
+    const divider = () => (
+        <Divider
+            key={Math.random().toString(36).substring(7)}
+            orientation='horizontal'
+            color='gray.600'
+        />
+    )
     const previousDir =
-        router.asPath.lastIndexOf('/') === 0
-            ? '/'
-            : router.asPath.slice(0, router.asPath.lastIndexOf('/'))
+        router.asPath.slice(0, router.asPath.lastIndexOf('/')) || '/'
 
     return (
         <Flex
+            key='list component'
             direction='column'
             overflowX='hidden'
             width='850px'
@@ -42,57 +46,36 @@ const List = (props: Props): JSX.Element => {
             borderRadius='5px'
             borderColor='gray.600'
         >
-            <Heading as={Center} size='md' py='1rem'>
+            <Heading key='heading' as={Center} size='md' py='1rem'>
                 <Breadcrumbs />
             </Heading>
-            {divider}
-            <Link href={previousDir}>
+            {divider()}
+            <Link href={previousDir} key='previous page'>
                 <ChakraLink
                     p='0.3rem 1rem'
-                    _hover={{ bg }}
                     fontWeight='600'
                     color='githubLink'
+                    _hover={{ bg }}
                 >
                     .&#8202;.
                 </ChakraLink>
             </Link>
-            {props.files.map((file) => (
-                <>
-                    {divider}
-                    <Grid
-                        as='li'
-                        p='0.3rem 1rem'
-                        key={file.name}
-                        templateColumns='60% 25% 15%'
-                        _hover={{ bg }}
-                    >
-                        <Link
-                            href={
-                                (file.dir ? '' : '/api') +
-                                router.asPath +
-                                (router.asPath === '/' ? '' : '/') +
-                                file.utf_name
-                            }
-                        >
-                            <ChakraLink
-                                display='flex'
-                                alignItems='center'
-                                width='fit-content'
-                            >
-                                <Icon
-                                    as={file.dir ? FaFolder : FaRegFile}
-                                    marginRight='0.5rem'
-                                />
-                                <Text isTruncated>{file.name}</Text>
-                            </ChakraLink>
-                        </Link>
-                        <Text textAlign='right' as={Moment} fromNow>
-                            {file.time}
-                        </Text>
-                        <Text textAlign='right'>{filesize(file.size)}</Text>
-                    </Grid>
-                </>
-            ))}
+            {props.loading ? (
+                <Center>
+                    <Spinner marginBottom='1rem' />
+                </Center>
+            ) : (
+                props.files.map((file) => (
+                    <>
+                        {divider()}
+                        {file.dir ? (
+                            <Folder key={file.name} {...file} />
+                        ) : (
+                            <File key={file.name} {...file} />
+                        )}
+                    </>
+                ))
+            )}
         </Flex>
     )
 }

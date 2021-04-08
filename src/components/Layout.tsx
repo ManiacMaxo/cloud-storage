@@ -8,15 +8,15 @@ interface Props {
     title?: string
 }
 
-const Layout = (props: Props): JSX.Element => {
+const Layout: React.FC<Props> = ({ children, title }): JSX.Element => {
     return (
         <>
             <Head>
-                <title>{props.title ?? 'Gorchilov Cloud'}</title>
+                <title>{title ?? 'Gorchilov Cloud'}</title>
             </Head>
             <Header height='10vh' />
             <Flex minHeight='90vh' justifyContent='center'>
-                {props.children}
+                {children}
             </Flex>
         </>
     )

@@ -4,17 +4,25 @@ import { File } from '../lib'
 
 const useGetFiles = (router: NextRouter) => {
     const [files, setFiles] = useState<File[]>([])
+    const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(() => {
+        if (!router.isReady) return
         ;(async () => {
-            const res = await fetch(`/api${router.asPath}`)
-            if (res.ok) {
-                return setFiles(await res.json())
+            setLoading(true)
+            try {
+                const res = await fetch(`/api${router.asPath}`)
+                if (res.ok) {
+                    setFiles(await res.json())
+                }
+            } catch (e) {
+                console.log(e)
+                setFiles([])
             }
-            setFiles([])
+            setLoading(false)
         })()
     }, [router.query])
 
-    return files
+    return { files, loading }
 }
 export default useGetFiles
