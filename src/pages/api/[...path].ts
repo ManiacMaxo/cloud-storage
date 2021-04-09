@@ -26,13 +26,12 @@ const listDir = (req: NextApiRequest, res: NextApiResponse): any => {
         console.log(`Downloading: ${path}`)
         const file = new File(path)
 
-        // if (file.mime === 'unknown') return res.status(500).end()
-
         res.setHeader(
             'Content-disposition',
             `attachment; filename*=UTF-8\'\'${file.utf_name}`
         )
         res.setHeader('Content-type', file.mime)
+        res.setHeader('Content-length', file.size)
 
         return createReadStream(path).pipe(res)
     }
