@@ -1,5 +1,4 @@
 import { createReadStream, existsSync, lstatSync, readdirSync } from 'fs'
-import { getType } from 'mime'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { resolve } from 'path'
 import { File } from '../../lib'

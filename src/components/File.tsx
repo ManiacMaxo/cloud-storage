@@ -1,6 +1,5 @@
 import { Icon, Link as ChakraLink, Text } from '@chakra-ui/react'
 import filesize from 'filesize'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import path from 'path'
 import React from 'react'
@@ -41,12 +40,16 @@ const File: React.FC<Props> = ({ name, time, size, utf_name }): JSX.Element => {
 
     return (
         <ListItem>
-            <Link href={href}>
-                <ChakraLink display='flex' alignItems='center' width='100%'>
-                    <Icon as={FaRegFile} marginRight='0.5rem' />
-                    <Text isTruncated>{name}</Text>
-                </ChakraLink>
-            </Link>
+            <ChakraLink
+                href={href}
+                display='flex'
+                alignItems='center'
+                width='100%'
+                boxShadow='none !important'
+            >
+                <Icon as={FaRegFile} marginRight='0.5rem' />
+                <Text isTruncated>{name}</Text>
+            </ChakraLink>
             <Text textAlign='right' as={Moment} fromNow>
                 {time}
             </Text>
