@@ -3,7 +3,7 @@ import React from 'react'
 
 interface Props {}
 
-const ListItem: React.FC<Props> = (props) => {
+const ListItem: React.FC<Props> = (props): JSX.Element => {
     const bg = useColorModeValue('githubHover', 'rosePineHover')
 
     return (

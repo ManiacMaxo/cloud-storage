@@ -8,7 +8,7 @@ interface Props {
     height: string
 }
 
-const Header: React.FC<Props> = ({ height }) => {
+const Header: React.FC<Props> = ({ height }): JSX.Element => {
     const [session] = useSession()
     return (
         <Box width='100vw' py='1rem' height={height}>

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import path from 'path'
 import React from 'react'
-import { FaFolder } from 'react-icons/fa'
+import { GoFileDirectory } from 'react-icons/go'
 import Moment from 'react-moment'
 import ListItem from './ListItem'
 
@@ -15,7 +15,12 @@ interface Props {
     utf_name: string
 }
 
-const File: React.FC<Props> = ({ name, time, size, utf_name }) => {
+const Folder: React.FC<Props> = ({
+    name,
+    time,
+    size,
+    utf_name
+}): JSX.Element => {
     const router = useRouter()
     const href = path.join(router.asPath, utf_name)
 
@@ -27,7 +32,7 @@ const File: React.FC<Props> = ({ name, time, size, utf_name }) => {
                     alignItems='center'
                     width='fit-content'
                 >
-                    <Icon as={FaFolder} marginRight='0.5rem' />
+                    <Icon as={GoFileDirectory} marginRight='0.5rem' />
                     <Text isTruncated>{name}</Text>
                 </ChakraLink>
             </Link>
@@ -39,4 +44,4 @@ const File: React.FC<Props> = ({ name, time, size, utf_name }) => {
     )
 }
 
-export default File
+export default Folder

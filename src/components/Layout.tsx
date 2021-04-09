@@ -4,19 +4,18 @@ import React from 'react'
 import Header from './Header'
 
 interface Props {
-    children?: any
     title?: string
 }
 
-const Layout: React.FC<Props> = ({ children, title }): JSX.Element => {
+const Layout: React.FC<Props> = (props): JSX.Element => {
     return (
         <>
             <Head>
-                <title>{title ?? 'Gorchilov Cloud'}</title>
+                <title>{props.title ?? 'Gorchilov Cloud'}</title>
             </Head>
             <Header height='10vh' />
             <Flex minHeight='90vh' justifyContent='center'>
-                {children}
+                {props.children}
             </Flex>
         </>
     )

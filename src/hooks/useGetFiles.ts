@@ -8,6 +8,7 @@ const useGetFiles = (router: NextRouter) => {
 
     useEffect(() => {
         if (!router.isReady) return
+        setFiles([])
         ;(async () => {
             setLoading(true)
             try {

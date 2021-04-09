@@ -4,7 +4,7 @@ import { AppProps } from 'next/app'
 import React from 'react'
 import theme from '../theme'
 
-function MyApp({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps): JSX.Element => {
     return (
         <Provider session={pageProps.session}>
             <ChakraProvider resetCSS theme={theme}>
@@ -14,4 +14,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     )
 }
 
-export default MyApp
+export default App

@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 import List from '../components/List'
 import useGetFiles from '../hooks/useGetFiles'
 
-const path = (): JSX.Element => {
+const Wildcard = (): JSX.Element => {
     const router = useRouter()
     const { files, loading } = useGetFiles(router)
 
@@ -15,4 +15,4 @@ const path = (): JSX.Element => {
     )
 }
 
-export default path
+export default Wildcard

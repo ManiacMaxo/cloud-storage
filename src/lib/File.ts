@@ -1,3 +1,4 @@
+import { getType } from 'mime'
 import { lstatSync } from 'fs'
 
 export class File {
@@ -6,6 +7,7 @@ export class File {
     dir: boolean
     size: number
     time: Date
+    mime: string
 
     constructor(path: string) {
         const stats = lstatSync(path)
@@ -14,5 +16,6 @@ export class File {
         this.utf_name = encodeURIComponent(this.name)
         this.size = stats.size
         this.time = stats.mtime
+        this.mime = getType(path) ?? 'application/octet-stream'
     }
 }

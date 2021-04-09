@@ -8,5 +8,13 @@ export default NextAuth({
             clientSecret: process.env.GITHUB_SECRET ?? ''
         })
     ],
-    secret: process.env.SECRET // for JWT
+    secret: process.env.SECRET, // for JWT
+    pages: {
+        signIn: '/auth/signin'
+    },
+    callbacks: {
+        async redirect(_url, baseUrl) {
+            return baseUrl
+        }
+    }
 })

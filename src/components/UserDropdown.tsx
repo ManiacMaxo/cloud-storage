@@ -16,7 +16,7 @@ interface Props {
     session: Session
 }
 
-const UserDropdown: React.FC<Props> = ({ session }): JSX.Element => {
+const UserDropdown = ({ session }: Props): JSX.Element => {
     return (
         <Menu>
             <MenuButton
@@ -27,7 +27,7 @@ const UserDropdown: React.FC<Props> = ({ session }): JSX.Element => {
                 // rightIcon={<ChevronDownIcon />}
                 _focus={{ outline: 'none' }}
             />
-            <MenuList>
+            <MenuList className='menu'>
                 <Text px='0.8rem'>
                     <small>Signed in as</small>
                     <br />
@@ -35,8 +35,13 @@ const UserDropdown: React.FC<Props> = ({ session }): JSX.Element => {
                 </Text>
                 <MenuDivider />
                 <MenuItem>
+                    <Link href='/'>
+                        <a>Home</a>
+                    </Link>
+                </MenuItem>
+                <MenuItem>
                     <Link href='/protected'>
-                        <a>protected</a>
+                        <a>Protected</a>
                     </Link>
                 </MenuItem>
                 <MenuItem onClick={() => signOut()}>Sign out</MenuItem>

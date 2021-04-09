@@ -26,15 +26,14 @@ const listDir = (req: NextApiRequest, res: NextApiResponse): any => {
     if (!lstatSync(path).isDirectory()) {
         console.log(`Downloading: ${path}`)
         const file = new File(path)
-        const mimetype = getType(path)
 
-        if (!mimetype) return res.status(500).end()
+        // if (file.mime === 'unknown') return res.status(500).end()
 
         res.setHeader(
             'Content-disposition',
             `attachment; filename*=UTF-8\'\'${file.utf_name}`
         )
-        res.setHeader('Content-type', mimetype)
+        res.setHeader('Content-type', file.mime)
 
         return createReadStream(path).pipe(res)
     }

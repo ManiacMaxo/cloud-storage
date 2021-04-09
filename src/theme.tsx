@@ -17,20 +17,17 @@ const theme = extendTheme({
         global: (props) => ({
             body: {
                 color: mode('githubText', 'rosePineText')(props),
-                bg: mode('githubBg', 'rosePineBg')(props)
+                bg: mode('githubBg', 'rosePineBg')(props),
+                minHeight: '100vh'
             }
         })
     },
     components: {
         Menu: {
             baseStyle: (props) => ({
-                color: mode('githubText', 'rosePineText')(props),
-                bg: mode('githubBg', 'rosePineBg')(props)
-            })
-        },
-        Grid: {
-            baseStyle: (props) => ({
-                _hover: { bg: mode('githubHover', 'rosePineHover')(props) }
+                list: {
+                    bg: mode('githubBg', 'rosePineBg')(props)
+                }
             })
         }
     },
