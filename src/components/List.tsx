@@ -22,7 +22,7 @@ interface Props {
 
 const List: React.FC<Props> = (props): JSX.Element => {
     const router = useRouter()
-    const bg = useColorModeValue('githubHover', 'rosePineHover')
+    const bg = useColorModeValue('lightHover', 'darkHover')
 
     const divider = () => (
         <Divider
@@ -54,7 +54,7 @@ const List: React.FC<Props> = (props): JSX.Element => {
                 <ChakraLink
                     p='0.3rem 1rem'
                     fontWeight='600'
-                    color='githubLink'
+                    color='lightLink'
                     _hover={{ bg }}
                 >
                     .&#8202;.
@@ -62,7 +62,7 @@ const List: React.FC<Props> = (props): JSX.Element => {
             </Link>
             {props.loading ? (
                 <Center>
-                    <Spinner marginBottom='1rem' />
+                    <Spinner key='spinner' marginBottom='1rem' />
                 </Center>
             ) : (
                 props.files.map((file) => (

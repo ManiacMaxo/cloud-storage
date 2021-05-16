@@ -5,19 +5,19 @@ const fonts = { body: `'Sen', sans-serif` }
 
 const theme = extendTheme({
     colors: {
-        rosePineBg: '#1f1d2e',
-        rosePineText: '#e0def4',
-        rosePineHover: '#6e6a86',
-        githubBg: '#ffffff',
-        githubText: '#24292e',
-        githubHover: '#fffbdd',
-        githubLink: '#58a6ff'
+        darkBg: '#1f1d2e',
+        darkText: '#e0def4',
+        darkHover: '#6e6a86',
+        lightBg: '#ffffff',
+        lightText: '#24292e',
+        lightHover: '#fffbdd',
+        lightLink: '#58a6ff'
     },
     styles: {
         global: (props) => ({
             body: {
-                color: mode('githubText', 'rosePineText')(props),
-                bg: mode('githubBg', 'rosePineBg')(props),
+                color: mode('lightText', 'darkText')(props),
+                bg: mode('lightBg', 'darkBg')(props),
                 minHeight: '100vh'
             }
         })
@@ -26,7 +26,7 @@ const theme = extendTheme({
         Menu: {
             baseStyle: (props) => ({
                 list: {
-                    bg: mode('githubBg', 'rosePineBg')(props)
+                    bg: mode('lightBg', 'darkBg')(props)
                 }
             })
         }

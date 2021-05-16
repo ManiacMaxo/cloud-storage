@@ -23,12 +23,11 @@ const listDir = (req: NextApiRequest, res: NextApiResponse): any => {
     }
 
     if (!lstatSync(path).isDirectory()) {
-        console.log(`Downloading: ${path}`)
         const file = new File(path)
 
         res.setHeader(
             'Content-disposition',
-            `attachment; filename*=UTF-8\'\'${file.utf_name}`
+            `inline; filename*=UTF-8\'\'${file.utf_name}`
         )
         res.setHeader('Content-type', file.mime)
         res.setHeader('Content-length', file.size)

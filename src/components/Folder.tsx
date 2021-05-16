@@ -36,10 +36,20 @@ const Folder: React.FC<Props> = ({
                     <Text isTruncated>{name}</Text>
                 </ChakraLink>
             </Link>
-            <Text textAlign='right' as={Moment} fromNow>
+            <Text
+                textAlign='right'
+                as={Moment}
+                fromNow
+                display={{ base: 'none', md: 'inline-block' }}
+            >
                 {time}
             </Text>
-            <Text textAlign='right'>{filesize(size)}</Text>
+            <Text
+                textAlign='right'
+                display={{ base: 'none', sm: 'inline-block' }}
+            >
+                {filesize(size)}
+            </Text>
         </ListItem>
     )
 }
