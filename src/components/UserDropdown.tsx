@@ -17,6 +17,7 @@ interface Props {
 }
 
 const UserDropdown = ({ session }: Props): JSX.Element => {
+    if (!session.user) return <div />
     return (
         <Menu>
             <MenuButton
