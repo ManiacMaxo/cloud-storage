@@ -6,7 +6,7 @@ import path from 'path'
 import React from 'react'
 import { GoFileDirectory } from 'react-icons/go'
 import Moment from 'react-moment'
-import ListItem from './ListItem'
+import { ListItem } from '.'
 
 interface Props {
     name: string
@@ -54,4 +54,4 @@ const Folder: React.FC<Props> = ({
     )
 }
 
-export default Folder
+export { Folder }

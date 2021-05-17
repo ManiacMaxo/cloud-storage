@@ -1,8 +1,7 @@
 import { Box, Button, Flex } from '@chakra-ui/react'
 import { signIn, useSession } from 'next-auth/client'
 import React from 'react'
-import { DarkModeSwitch } from './DarkModeSwitch'
-import UserDropdown from './UserDropdown'
+import { DarkModeSwitch, UserDropdown } from '.'
 
 interface Props {
     height: string
@@ -40,4 +39,4 @@ const Header: React.FC<Props> = ({ height }): JSX.Element => {
     )
 }
 
-export default Header
+export { Header }

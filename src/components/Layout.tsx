@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import Head from 'next/head'
 import React from 'react'
-import Header from './Header'
+import { Header } from '.'
 
 interface Props {
     title?: string
@@ -21,4 +21,4 @@ const Layout: React.FC<Props> = (props): JSX.Element => {
     )
 }
 
-export default Layout
+export { Layout }

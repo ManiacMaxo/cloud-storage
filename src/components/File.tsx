@@ -5,7 +5,7 @@ import path from 'path'
 import React from 'react'
 import { FaRegFile } from 'react-icons/fa'
 import Moment from 'react-moment'
-import ListItem from './ListItem'
+import { ListItem } from '.'
 
 interface Props {
     name: string
@@ -48,4 +48,4 @@ const File: React.FC<Props> = ({ name, time, size, utf_name }): JSX.Element => {
     )
 }
 
-export default File
+export { File }

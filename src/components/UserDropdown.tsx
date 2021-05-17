@@ -51,4 +51,4 @@ const UserDropdown = ({ session }: Props): JSX.Element => {
     )
 }
 
-export default UserDropdown
+export { UserDropdown }

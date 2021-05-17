@@ -3,81 +3,92 @@ import {
     Divider,
     Flex,
     Heading,
-    Link as ChakraLink,
-    Spinner,
-    useColorModeValue
+    Link as ChakraLink
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import Breadcrumbs from '../components/Breadcrumbs'
-import { File as TypeFile } from '../lib/File'
-import File from './File'
-import Folder from './Folder'
+import { Breadcrumbs, File, Folder, ListItem, Loader } from '.'
+import { IFile } from '../lib'
+import { Readme } from './Readme'
 
 interface Props {
-    files: TypeFile[]
+    files: IFile[]
     loading: boolean
 }
 
 const List: React.FC<Props> = (props): JSX.Element => {
     const router = useRouter()
-    const bg = useColorModeValue('lightHover', 'darkHover')
+    const borderColor = 'gray.600'
 
     const divider = () => (
         <Divider
             key={Math.random().toString(36).substring(7)}
             orientation='horizontal'
-            color='gray.600'
+            color={borderColor}
         />
     )
     const previousDir =
         router.asPath.slice(0, router.asPath.lastIndexOf('/')) || '/'
+
+    const readme = props.files.find(
+        (file) => file.name.split('.')[0].toUpperCase() === 'README'
+    )
 
     return (
         <Flex
             key='list component'
             direction='column'
             overflowX='hidden'
-            width='850px'
-            maxWidth='90vw'
+            width='90vw'
+            maxWidth='850px'
             height='fit-content'
             border='1px solid'
             borderRadius='5px'
-            borderColor='gray.600'
+            borderColor={borderColor}
+            marginBottom='5rem'
         >
             <Heading key='heading' as={Center} size='md' py='1rem'>
                 <Breadcrumbs />
             </Heading>
             {divider()}
-            <Link href={previousDir} key='previous page'>
-                <ChakraLink
-                    p='0.3rem 1rem'
-                    fontWeight='600'
-                    color='lightLink'
-                    _hover={{ bg }}
-                >
-                    .&#8202;.
-                </ChakraLink>
-            </Link>
+            <ListItem key='previous page' templateColumns='1fr'>
+                <Link href={previousDir}>
+                    <ChakraLink
+                        fontWeight='600'
+                        color='lightLink'
+                        _hover={{ textDecor: 'none' }}
+                    >
+                        .&#8202;.
+                    </ChakraLink>
+                </Link>
+            </ListItem>
             {props.loading ? (
-                <Center>
-                    <Spinner key='spinner' marginBottom='1rem' />
-                </Center>
+                <Loader />
             ) : (
-                props.files.map((file) => (
-                    <>
-                        {divider()}
-                        {file.dir ? (
-                            <Folder key={file.name} {...file} />
-                        ) : (
-                            <File key={file.name} {...file} />
-                        )}
-                    </>
-                ))
+                props.files.map((file) => {
+                    const f = file.dir ? (
+                        <Folder key={file.name} {...file} />
+                    ) : (
+                        <File key={file.name} {...file} />
+                    )
+
+                    return (
+                        <>
+                            {divider()}
+                            {f}
+                        </>
+                    )
+                })
+            )}
+            {readme && (
+                <>
+                    {divider()}
+                    <Readme src={`/api${router.asPath}/${readme.utf_name}`} />
+                </>
             )}
         </Flex>
     )
 }
 
-export default List
+export { List }

@@ -1,7 +1,7 @@
 import { existsSync, readdirSync } from 'fs'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { resolve } from 'path'
-import { File } from '../../lib'
+import { IFile } from '../../lib'
 
 const listDir = (_req: NextApiRequest, res: NextApiResponse): any => {
     if (!process.env.DIR) {
@@ -17,10 +17,10 @@ const listDir = (_req: NextApiRequest, res: NextApiResponse): any => {
 
     try {
         const dir = readdirSync(path)
-        const files: File[] = []
-        const folders: File[] = []
+        const files: IFile[] = []
+        const folders: IFile[] = []
         dir.forEach((file) => {
-            const newFile = new File(resolve(path, file))
+            const newFile = new IFile(resolve(path, file))
             newFile.dir ? folders.push(newFile) : files.push(newFile)
         })
 

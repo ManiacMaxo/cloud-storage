@@ -24,4 +24,4 @@ const Breadcrumbs: React.FC = (): JSX.Element => {
     )
 }
 
-export default Breadcrumbs
+export { Breadcrumbs }

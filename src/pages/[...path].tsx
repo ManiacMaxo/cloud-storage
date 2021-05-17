@@ -1,18 +1,13 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-import Layout from '../components/Layout'
-import List from '../components/List'
+import { List } from '../components'
 import useGetFiles from '../hooks/useGetFiles'
 
 const Wildcard = (): JSX.Element => {
     const router = useRouter()
     const { files, loading } = useGetFiles(router)
 
-    return (
-        <Layout>
-            <List files={files} loading={loading} />
-        </Layout>
-    )
+    return <List files={files} loading={loading} />
 }
 
 export default Wildcard

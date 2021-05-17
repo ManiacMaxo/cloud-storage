@@ -1,7 +1,7 @@
 import { getType } from 'mime'
 import { lstatSync } from 'fs'
 
-export class File {
+export class IFile {
     name: string
     utf_name: string
     dir: boolean

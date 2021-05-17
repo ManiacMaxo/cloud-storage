@@ -1,9 +1,9 @@
 import { NextRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { File } from '../lib'
+import { IFile } from '../lib'
 
 const useGetFiles = (router: NextRouter) => {
-    const [files, setFiles] = useState<File[]>([])
+    const [files, setFiles] = useState<IFile[]>([])
     const [loading, setLoading] = useState<boolean>(true)
 
     useEffect(() => {

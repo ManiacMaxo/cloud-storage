@@ -2,7 +2,6 @@ import { Button, Center } from '@chakra-ui/react'
 import { providers as authProviders, signIn } from 'next-auth/client'
 import React from 'react'
 import { GoMarkGithub } from 'react-icons/go'
-import Layout from '../../components/Layout'
 
 interface Provider {
     name: string
@@ -20,19 +19,17 @@ const signin: React.FC<Props> = ({ providers }): JSX.Element => {
     const icons = new Map([['GitHub', <GoMarkGithub />]])
 
     return (
-        <Layout>
-            <Center transform='translateY(-10vh)'>
-                {Object.values(providers).map((provider) => (
-                    <Button
-                        leftIcon={icons.get(provider.name)}
-                        onClick={() => signIn(provider.id)}
-                        key={provider.name}
-                    >
-                        Sign in with {provider.name}
-                    </Button>
-                ))}
-            </Center>
-        </Layout>
+        <Center transform='translateY(-10vh)'>
+            {Object.values(providers).map((provider) => (
+                <Button
+                    leftIcon={icons.get(provider.name)}
+                    onClick={() => signIn(provider.id)}
+                    key={provider.name}
+                >
+                    Sign in with {provider.name}
+                </Button>
+            ))}
+        </Center>
     )
 }
 

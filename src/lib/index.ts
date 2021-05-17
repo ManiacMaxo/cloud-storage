@@ -1,2 +1,2 @@
-export { File } from './File'
+export { IFile } from './File'
 export { resolvePath } from './resolvePath'
