@@ -1,5 +1,6 @@
 export { Breadcrumbs } from './Breadcrumbs'
 export { DarkModeSwitch } from './DarkModeSwitch'
+export { DateFormat } from './DateFormat'
 export { File } from './File'
 export { Folder } from './Folder'
 export { Header } from './Header'

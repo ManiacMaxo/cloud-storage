@@ -1,16 +1,15 @@
-import { FiMoon, FiSun } from 'react-icons/fi'
 import { IconButton, useColorMode } from '@chakra-ui/react'
 import React from 'react'
+import { FiMoon, FiSun } from 'react-icons/fi'
 
-const DarkModeSwitch: React.FC = (): JSX.Element => {
+const DarkModeSwitch: React.FC = () => {
     const { colorMode, toggleColorMode } = useColorMode()
-    const isDark = colorMode === 'dark'
 
     return (
         <IconButton
             aria-label='theme switch'
             variant='ghost'
-            icon={isDark ? <FiSun /> : <FiMoon />}
+            icon={colorMode === 'dark' ? <FiSun /> : <FiMoon />}
             outline='none'
             onClick={toggleColorMode}
         />

@@ -1,13 +1,8 @@
-import { useRouter } from 'next/router'
-import React from 'react'
+import { NextPage } from 'next'
 import { List } from '../components'
-import useGetFiles from '../hooks/useGetFiles'
 
-const Wildcard = (): JSX.Element => {
-    const router = useRouter()
-    const { files, loading } = useGetFiles(router)
-
-    return <List files={files} loading={loading} />
+const Wildcard: NextPage = () => {
+    return <List />
 }
 
 export default Wildcard

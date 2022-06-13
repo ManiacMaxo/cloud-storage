@@ -1,5 +1,5 @@
 import { Box, Button, Flex } from '@chakra-ui/react'
-import { signIn, useSession } from 'next-auth/client'
+import { signIn, useSession } from 'next-auth/react'
 import React from 'react'
 import { DarkModeSwitch, UserDropdown } from '.'
 
@@ -7,8 +7,9 @@ interface Props {
     height: string
 }
 
-const Header: React.FC<Props> = ({ height }): JSX.Element => {
-    const [session] = useSession()
+const Header: React.FC<Props> = ({ height }) => {
+    const { data: session } = useSession()
+
     return (
         <Box width='100vw' py='1rem' height={height}>
             <Flex

@@ -1,13 +1,8 @@
-import { useRouter } from 'next/router'
-import React from 'react'
+import { NextPage } from 'next'
 import { List } from '../components'
-import useGetFiles from '../hooks/useGetFiles'
 
-const Index = (): JSX.Element => {
-    const router = useRouter()
-    const { files, loading } = useGetFiles(router)
-
-    return <List files={files} loading={loading} />
+const Index: NextPage = () => {
+    return <List />
 }
 
 export default Index

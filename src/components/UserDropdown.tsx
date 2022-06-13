@@ -8,7 +8,7 @@ import {
     Text
 } from '@chakra-ui/react'
 import { Session } from 'next-auth'
-import { signOut } from 'next-auth/client'
+import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -16,7 +16,7 @@ interface Props {
     session: Session
 }
 
-const UserDropdown = ({ session }: Props): JSX.Element => {
+const UserDropdown: React.FC<Props> = ({ session }) => {
     if (!session.user) return <div />
     return (
         <Menu>
@@ -25,7 +25,6 @@ const UserDropdown = ({ session }: Props): JSX.Element => {
                 name={session.user.name ?? ''}
                 src={session.user.image ?? ''}
                 cursor='pointer'
-                // rightIcon={<ChevronDownIcon />}
                 _focus={{ outline: 'none' }}
             />
             <MenuList className='menu'>

@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { resolve } from 'path'
 import { IFile } from '../../lib'
 
-const listDir = (_req: NextApiRequest, res: NextApiResponse): any => {
+const listDir = (_req: NextApiRequest, res: NextApiResponse) => {
     if (!process.env.DIR) {
         return res.status(500).send('Base directory not specified')
     }

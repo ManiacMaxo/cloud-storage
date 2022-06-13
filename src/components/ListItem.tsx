@@ -1,9 +1,7 @@
 import { Grid, GridProps, useColorModeValue } from '@chakra-ui/react'
 import React from 'react'
 
-interface Props extends GridProps {}
-
-const ListItem: React.FC<Props> = (props): JSX.Element => {
+const ListItem: React.FC<GridProps> = (props) => {
     const bg = useColorModeValue('lightHover', 'darkHover')
 
     return (

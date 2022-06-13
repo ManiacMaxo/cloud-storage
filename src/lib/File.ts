@@ -1,12 +1,13 @@
 import { getType } from 'mime'
 import { lstatSync } from 'fs'
+import { DateTime } from 'luxon'
 
 export class IFile {
     name: string
     utf_name: string
     dir: boolean
     size: number
-    time: Date
+    time: DateTime
     mime: string
 
     constructor(path: string) {
@@ -15,7 +16,7 @@ export class IFile {
         this.name = (path.split('\\').pop() || '/').split('/').pop() || ''
         this.utf_name = encodeURIComponent(this.name)
         this.size = stats.size
-        this.time = stats.mtime
+        this.time = DateTime.fromJSDate(stats.mtime)
         this.mime = getType(path) ?? 'application/octet-stream'
     }
 }

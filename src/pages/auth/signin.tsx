@@ -1,6 +1,7 @@
 import { Button, Center } from '@chakra-ui/react'
-import { providers as authProviders, signIn } from 'next-auth/client'
-import React from 'react'
+import { NextPage } from 'next'
+import { getProviders, signIn } from 'next-auth/react'
+
 import { GoMarkGithub } from 'react-icons/go'
 
 interface Provider {
@@ -15,8 +16,8 @@ interface Props {
     providers: Provider[]
 }
 
-const signin: React.FC<Props> = ({ providers }): JSX.Element => {
-    const icons = new Map([['GitHub', <GoMarkGithub />]])
+const signin: NextPage<Props> = ({ providers }) => {
+    const icons = new Map([['GitHub', <GoMarkGithub key='github' />]])
 
     return (
         <Center transform='translateY(-10vh)'>
@@ -34,7 +35,7 @@ const signin: React.FC<Props> = ({ providers }): JSX.Element => {
 }
 
 export const getServerSideProps = async (_context: any) => {
-    const providers = await authProviders()
+    const providers = await getProviders()
 
     return {
         props: { providers }

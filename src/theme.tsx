@@ -1,5 +1,5 @@
 import { extendTheme } from '@chakra-ui/react'
-import { mode } from '@chakra-ui/theme-tools'
+import { mode, StyleFunctionProps } from '@chakra-ui/theme-tools'
 
 const fonts = { body: `'Sen', sans-serif` }
 
@@ -14,7 +14,7 @@ const theme = extendTheme({
         lightLink: '#58a6ff'
     },
     styles: {
-        global: (props) => ({
+        global: (props: StyleFunctionProps) => ({
             body: {
                 color: mode('lightText', 'darkText')(props),
                 bg: mode('lightBg', 'darkBg')(props),
@@ -24,7 +24,7 @@ const theme = extendTheme({
     },
     components: {
         Menu: {
-            baseStyle: (props) => ({
+            baseStyle: (props: StyleFunctionProps) => ({
                 list: {
                     bg: mode('lightBg', 'darkBg')(props)
                 }

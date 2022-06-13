@@ -1,39 +1,44 @@
 {
   "name": "cloud-storage",
   "author": "Victor Gorchilov <victor@gorchilov.com>",
-  "version": "1.0.0",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "lint": "next lint",
     "format": "prettier --write ."
   },
+  "engineStrict": true,
+  "engines": {
+    "node": "<18"
+  },
   "dependencies": {
-    "@chakra-ui/react": "^1.6.1",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
-    "chakra-ui-markdown-renderer": "^2.0.0",
-    "filesize": "^6.1.0",
-    "framer-motion": "^4",
-    "mime": "^2.5.2",
-    "moment": "^2.29.1",
-    "next": "latest",
-    "next-auth": "^3.13.3",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-icons": "^4.2.0",
-    "react-markdown": "^6.0.2",
-    "react-moment": "^1.1.1"
+    "@chakra-ui/react": "^2.2.1",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "filesize": "^9.0.2",
+    "framer-motion": "^6.3.11",
+    "luxon": "^2.4.0",
+    "mime": "^3.0.0",
+    "next": "12.1.6",
+    "next-auth": "^4.5.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-icons": "^4.4.0",
+    "react-markdown": "^8.0.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.13",
+    "@babel/core": "^7.18.5",
+    "@types/luxon": "^2.3.2",
     "@types/mime": "^2.0.3",
-    "@types/next-auth": "^3.7.3",
-    "@types/node": "^14.14.37",
-    "@types/react": "^17.0.3",
-    "@types/react-dom": "^17.0.3",
-    "prettier": "^2.2.1",
-    "typescript": "4.2.3"
+    "@types/node": "^17.0.42",
+    "@types/react": "^18.0.12",
+    "@types/react-dom": "^18.0.5",
+    "eslint": "8.17.0",
+    "eslint-config-next": "12.1.6",
+    "prettier": "^2.6.2",
+    "typescript": "4.7.3"
   }
 }

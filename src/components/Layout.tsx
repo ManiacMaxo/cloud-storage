@@ -7,7 +7,7 @@ interface Props {
     title?: string
 }
 
-const Layout: React.FC<Props> = (props): JSX.Element => {
+const Layout: React.FC<React.PropsWithChildren<Props>> = (props) => {
     return (
         <>
             <Head>
